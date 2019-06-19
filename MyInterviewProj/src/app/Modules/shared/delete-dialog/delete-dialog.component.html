@@ -1,0 +1,8 @@
+<div class="dialog-content" mat-dialog-content>
+    <span><i class="fas fa-exclamation-triangle"></i></span>
+    <p>Do you really want to delete this?</p>
+  </div>
+  <div mat-dialog-actions>
+    <button class="action" (click)='delete()' mat-raised-button color='warn'>Yes, Delete it!</button>
+    <button class="action no" (click)='cancelDelete()' mat-raised-button>No, Keep it</button>
+  </div>

@@ -1,0 +1,124 @@
+<div class="container-fluid">
+  <div class="go-back">
+    <a [routerLink]="['/sto/customer/cus-list']" mat-raised-button color="primary">Customer list</a>
+  </div>
+  <div class="form-content">
+    <form [formGroup]="customerForm" autocomplete="off">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card basic">
+            <div class="card-header card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">sentiment_satisfied_alt</i>
+              </div>
+              <h4 class="card-title">Customer Details</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2 form-label"><label>First Name*</label></div>
+                <div class="col-md-10">
+                  <mat-form-field>
+                    <input matInput placeholder="Enter First Name" formControlName="firstname" />
+                    <mat-error *ngIf="firstname.invalid && firstname.touched">Required</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2 form-label">
+                  <label for="">Last Name</label>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <input matInput placeholder="Enter Last Name" formControlName="lastname" />
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-2 form-label"><label>Email</label></div>
+                <div class="col-md-5">
+                  <mat-form-field>
+                    <input matInput placeholder="Enter Staff Email" formControlName="email" />
+                    <mat-error *ngIf="email.errors?.email && email.touched">Please Enter a Valid Email address
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2 form-label">
+                  <label>Telephone</label>
+                </div>
+                <div class="col-md-5">
+                  <mat-form-field>
+                    <input matInput placeholder="Phone No*" formControlName="phone" />
+                    <!-- <mat-error *ngIf="
+                                  (phone.errors?.minlength ||
+                                  phone.errors?.maxlength) &&
+                                  phone.touched
+                                ">Please enter a valid Phone Number</mat-error> -->
+                    <mat-error *ngIf="
+                                phone.errors?.required && phone.touched
+                                ">Required</mat-error>
+                                <mat-error *ngIf="
+                                  (phone.errors?.minlength ||
+                                  phone.errors?.maxlength) &&  phone.touched"
+                                >Please enter a valid Phone Number</mat-error
+                              >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2 form-label">Variety*</div>
+                <div class="col-sm-3">
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="Select a variety"
+                      formControlName="variety"
+                    >
+                      <mat-option
+                        *ngFor="let variety of varieties"
+                        [value]="variety"
+                      >
+                        <span class="variety-value">{{ variety.value }}</span> | {{variety.description}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="variety.invalid && variety.touched"
+                      >Required</mat-error
+                    >
+                  </mat-form-field>
+                </div>               
+              </div>
+              <div class="col-md-2">
+                  <button *ngIf="!isEdit"
+                    mat-raised-button
+                    color="mat-raised-button"
+                    [disabled]="customerForm.invalid || isBlocked"
+                    (click)="createNewCustomer()"
+                  >
+                   Save
+                    <span [hidden]="!isBlocked">
+                      <mat-spinner diameter="20"></mat-spinner>
+                    </span>
+                  </button>
+                </div>
+                <div class="col-md-2">
+                    <button *ngIf="isEdit"
+                      mat-raised-button
+                      color="mat-raised-button"
+                      [disabled]="customerForm.invalid || isBlocked"
+                      (click)="updateCustomer()"
+                    >
+                     Update
+                      <span [hidden]="!isBlocked">
+                        <mat-spinner diameter="20"></mat-spinner>
+                      </span>
+                    </button>
+                  </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

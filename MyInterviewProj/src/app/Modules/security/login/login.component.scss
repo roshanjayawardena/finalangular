@@ -1,0 +1,57 @@
+.login-card {
+    width: 40%;
+    text-align: center;
+    margin: 250px auto auto;
+    padding: 50px 20px;
+    @media only screen and (max-width: 1400px) {
+      margin-top: 150px;
+    }
+    @media only screen and (max-width: 991px) {
+      width: 80%;
+    }
+  
+    .login-header {
+      margin-bottom: 20px;
+      .brand-name {
+        font-size: 30px;
+        margin-left: 20px;
+        font-weight: 600;
+        @media only screen and (max-width: 520px) {
+          margin: 0 0 20px;
+        }
+      }
+      .tagline {
+        color: #0058b3;
+        font-weight: 500;
+      }
+      img {
+        width: 80px;
+        @media only screen and (max-width: 520px) {
+          display: block;
+          margin: 0 auto 20px;
+        }
+      }
+    }
+    .form-content {
+      width: 80%;
+      margin: 0 auto;
+      button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  }
+  .copyright{
+    position: fixed;
+    right: 15px;
+    bottom: -10px;
+    h5{
+      @media only screen and (max-width: 767px){
+        font-size: 13px;
+      }
+      span{
+        font-weight: 600;
+      }
+    }
+  }
+  

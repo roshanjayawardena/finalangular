@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <div class="form-content">
+        <form [formGroup]="orderForm" autocomplete="off">
+            <div class="order-lot-row">
+                <div formArrayName="orderLot">
+                  <div
+                    *ngFor="let gem of OrderLot.controls; let i = index;"
+                    [formGroupName]="i"
+                  >
+                    <div class="row single-row">
+                      <!-- <div class="col-sm-1 stock-number">
+                        <span>{{ nextStockId }} - {{ i + 1 }}</span>
+                      </div> -->
+                      <div class="col-sm-2">
+                        <mat-form-field>
+                          <mat-select placeholder="ProductName" formControlName="productId">
+                            <mat-option *ngFor="let product of products" [value]="product.id" (click)="setSelected(product.id)">
+                              <span class="variety-value">{{ product.id }}</span> |
+                              {{ product.name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error
+                            *ngIf="
+                              gem.controls.productId.invalid && gem.controls.productId.touched
+                            "
+                            >Required</mat-error
+                          >
+                        </mat-form-field>
+                      </div>    
+                      <div class="col-md-2">
+                        <mat-form-field>
+                          <input
+                            matInput
+                            placeholder="Qty"
+                            type="number"
+                            formControlName="qty"
+                            class="number-val"
+                          />
+                          <mat-error
+                            *ngIf="
+                              gem.controls.qty.invalid &&
+                              gem.controls.qty.touched
+                            "
+                            >Required</mat-error
+                          >
+                        </mat-form-field>
+                      </div>                                    
+                      <div class="col-md-2">
+                        <mat-form-field>
+                          <input
+                            matInput
+                            placeholder="UnitPrice"
+                            type="number"
+                            formControlName="unitPrice"
+                            class="number-val"
+                            [value]= "unitPrice"    
+                          />
+                        </mat-form-field>
+                      </div> 
+                      <div class="col-md-2">
+                          <mat-form-field>
+                            <input
+                              matInput
+                              placeholder="Discount"
+                              type="number"
+                              formControlName="discount"
+                              class="number-val"
+                              [value]= "discount"                          
+                              
+                            />
+                            <span matSuffix>%</span>
+                          </mat-form-field>
+                        </div>                    
+                      <div class="delete-button">
+                        <button mat-button color="warn" (click)="deleteItem(i)">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="submit-btn"
+                mat-raised-button
+                color="primary"               
+                (click)="saveOrder()"
+                [disabled]="orderForm.invalid || orderForm.value.orderLot.length === 0"
+              >Save</button>
+          </form>
+          <button
+  class="add-more-btn"
+  mat-raised-button
+  color="primary"
+  (click)="addOrderItem()">
+  Add More
+</button>
+      </div>
+  </div>
